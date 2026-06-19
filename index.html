@@ -180,10 +180,10 @@ function renderParent(){
 }
 function renderDashboard(){
  const d=document.getElementById("dashboard");
- d.innerHTML=["SHIANA","SUMILE"].map(k=>{const total=approvedPoint(k), available=total-redeemedPoint(k), tasks=data.tasks.filter(t=>t.kid===k), incomplete=tasks.filter(t=>taskProgress(t)<100).length, pend=pendingPoint(k), week=tasks.filter(t=>{const n=daysLeft(t.dueDate);return n!==null&&n>=0&&n<=7&&taskProgress(t)<100}).length, redeemed=redeemedPoint(k); return `<div class="dash"><div class="emoji">${k==="SHIANA"?"🌟":"🎀"}</div><h3>${k}</h3><div class="big">${available}pt</div><p>💰 換金可能 ${(available*YEN_PER_POINT).toLocaleString()}円</p><p>🏦 換金済み ${redeemed}pt / ${(redeemed*YEN_PER_POINT).toLocaleString()}円</p><p>📚 未完了 ${incomplete}件</p><p>📅 今週締切 ${week}件</p><p>⏳ 仮ポイント ${pend}pt</p></div>`}).join("");
+ d.innerHTML=["SUMILE","SHIANA"].map(k=>{const total=approvedPoint(k), available=total-redeemedPoint(k), tasks=data.tasks.filter(t=>t.kid===k), incomplete=tasks.filter(t=>taskProgress(t)<100).length, pend=pendingPoint(k), week=tasks.filter(t=>{const n=daysLeft(t.dueDate);return n!==null&&n>=0&&n<=7&&taskProgress(t)<100}).length, redeemed=redeemedPoint(k); return `<div class="dash"><div class="emoji">${k==="SHIANA"?"🌟":"🎀"}</div><h3>${k}</h3><div class="big">${available}pt</div><p>💰 換金可能 ${(available*YEN_PER_POINT).toLocaleString()}円</p><p>🏦 換金済み ${redeemed}pt / ${(redeemed*YEN_PER_POINT).toLocaleString()}円</p><p>📚 未完了 ${incomplete}件</p><p>📅 今週締切 ${week}件</p><p>⏳ 仮ポイント ${pend}pt</p></div>`}).join("");
  const s=document.getElementById("subjectSummary");
  const rows=[];
- ["SHIANA","SUMILE"].forEach(k=>{
+ ["SUMILE","SHIANA"].forEach(k=>{
    const map={};
    data.tasks.filter(t=>t.kid===k&&t.approved).forEach(t=>{map[t.subject]=(map[t.subject]||0)+t.done.length*Number(t.point||1)});
    Object.keys(map).forEach(sub=>rows.push(`<div class="subject-row"><span>${k} / ${sub}</span><span>${map[sub]}pt</span></div>`));
